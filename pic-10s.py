@@ -8,6 +8,8 @@ import logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
+config = picam.create_still_configuration()
+picam.configure(config)
 picam.start()
 
 while True:
