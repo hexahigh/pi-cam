@@ -1,12 +1,13 @@
 import time
-from picamera2 import Picamera2, Preview
+from picamera2 import Picamera2
 import os
 from datetime import datetime
+import logging
+
+# Set up logging
+logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
-config = picam.create_preview_configuration()
-picam.configure(config)
-picam.start_preview(Preview.QTGL)
 picam.start()
 
 while True:
@@ -17,6 +18,8 @@ while True:
     file_name = "{}.jpg".format(timestamp.strftime("%H_%M_%S"))
     file_path = os.path.join(folder_path, file_name)
     picam.capture_file(file_path)
+    logging.info('Captured image and saved to: {}'.format(file_path))
+    print('Captured image and saved to: {}'.format(file_path))
     time.sleep(10)
 
 picam.stop()
