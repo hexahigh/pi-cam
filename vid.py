@@ -1,5 +1,6 @@
 import time
 from picamera2 import Picamera2
+from picamera2.encoders import MJPEGEncoder, Quality
 import os
 from datetime import datetime
 import logging
