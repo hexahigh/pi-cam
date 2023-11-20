@@ -17,7 +17,7 @@ timestamp = datetime.now()
 folder_path = os.path.join(str(timestamp.month), str(timestamp.day))
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
-file_name = "{}.mjpeg".format(timestamp.strftime("%H_%M_%S"))
+file_name = "{}.mjpg".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 try:
