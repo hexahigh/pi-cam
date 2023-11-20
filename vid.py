@@ -21,7 +21,7 @@ file_name = "{}.jpg".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 try:
-    picam.start_recording(encoder, file_path, Quality.HIGH)
+    picam.start_recording(file_path, encoder=encoder, quality=Quality.HIGH)  # Quality parameter moved here
     logging.info('Started recording video to: {}'.format(file_path))
     print('Started recording video to: {}'.format(file_path))
     while True:
