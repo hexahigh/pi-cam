@@ -9,7 +9,7 @@ logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(ascti
 
 picam = Picamera2()
 config = picam.create_video_configuration()
-encoder = JpegEncoder()
+encoder = MJPEGEncoder()
 picam.configure(config)
 picam.start()
 
