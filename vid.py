@@ -21,7 +21,7 @@ if not os.path.exists(folder_path):
 file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
-output = FfmpegOutput(file_path, "-vc x264")
+output = FfmpegOutput(file_path, "-v:c x264")
 
 try:
     picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
