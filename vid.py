@@ -1,6 +1,6 @@
 import time
 from picamera2 import Picamera2
-from picamera2.encoders import MJPEGEncoder, Quality, H264Encoder
+from picamera2.encoders import MJPEGEncoder, Quality, H264Encoder, Encoder
 from picamera2.outputs import FfmpegOutput
 import os
 from datetime import datetime
@@ -10,8 +10,8 @@ import logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
-config = picam.create_video_configuration()
-encoder = H264Encoder()
+config = picam.create_video_configuration(raw={}, encode="raw")
+encoder = Encoder()
 picam.configure(config)
 
 timestamp = datetime.now()
@@ -21,7 +21,7 @@ if not os.path.exists(folder_path):
 file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
-output = FfmpegOutput(file_path)
+output = FfmpegOutput(file_path, "-vc x264")
 
 try:
     picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
