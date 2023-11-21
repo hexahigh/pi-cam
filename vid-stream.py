@@ -22,7 +22,7 @@ file_name = "{}.mjpg".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 # Create FfmpegOutput
-output = FfmpegOutput("-f mpegts udp://localhost:2233")
+output = FfmpegOutput("-f mpegts udp://192.168.10.168:2233")
 
 try:
     picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
