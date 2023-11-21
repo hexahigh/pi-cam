@@ -28,7 +28,7 @@ file_name = "{}.mjpg".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 # Create FfmpegOutput
-output = FfmpegOutput("-f flv rtmp://a.rtmp.youtube.com/live/" + args.key)
+output = FfmpegOutput("-f flv rtmp://a.rtmp.youtube.com/live2/" + args.key)
 
 try:
     picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
