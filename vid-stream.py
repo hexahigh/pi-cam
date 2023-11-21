@@ -5,6 +5,12 @@ from picamera2.outputs import FfmpegOutput
 import os
 from datetime import datetime
 import logging
+import argparse
+
+argParser = argparse.ArgumentParser()
+argParser.add_argument("-k", "--key", help="stream key")
+
+args = argParser.parse_args()
 
 # Set up logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
@@ -22,7 +28,7 @@ file_name = "{}.mjpg".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 # Create FfmpegOutput
-output = FfmpegOutput("-f mpegts udp://192.168.10.168:2233")
+output = FfmpegOutput("-f flv rtmp://a.rtmp.youtube.com/live/" + args.key)
 
 try:
     picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
