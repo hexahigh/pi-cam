@@ -30,9 +30,10 @@ try:
     picam.start()
     logging.info('Started recording video to: {}'.format(file_path))
     print('Started recording video to: {}'.format(file_path))
+    output2.start()
     while True:
         time.sleep(1)  # Wait for 1 second
 except KeyboardInterrupt:
-    picam.stop_recording()
+    picam.stop()
     logging.info('Stopped recording video.')
     print('Stopped recording video.')
