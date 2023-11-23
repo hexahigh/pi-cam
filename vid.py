@@ -1,6 +1,6 @@
 import time
 from picamera2 import Picamera2
-from picamera2.encoders import MJPEGEncoder, Quality, H264Encoder, Encoder
+from picamera2.encoders import MJPEGEncoder, Quality, H264Encoder, Encoder, rgb
 from picamera2.outputs import FfmpegOutput
 import os
 from datetime import datetime
@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
-config = picam.create_video_configuration(raw={}, encode="RGB")
+config = picam.create_video_configuration(raw={}, encode="rgb")
 encoder = Encoder()
 picam.configure(config)
 
