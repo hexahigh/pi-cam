@@ -22,7 +22,7 @@ file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 output1 = FfmpegOutput(file_path)
-output2 = FfmpegOutput()
+output2 = FfmpegOutput(file_path)
 encoder.output = [output1, output2]
 
 try:
