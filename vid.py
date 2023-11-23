@@ -33,7 +33,7 @@ file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 output1 = FfmpegOutput(file_path)
-output2 = FfmpegOutput("-f dash -window_size 5 -use_template 1 -use_timeline 1 stream.mpd")
+output2 = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream.m3u8")
 encoder.output = [output1, output2]
 
 try:
