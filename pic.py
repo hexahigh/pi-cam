@@ -9,7 +9,7 @@ logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(ascti
 
 picam = Picamera2()
 config = picam.create_still_configuration()
-picam.set_controls({"ExposureTime": 10000}) # Set exposure time to 10000 microseconds
+picam.set_controls({"ExposureTime": 10000, "AfMode": controls.AfModeEnum.Continuous) # Set exposure time to 10000 microseconds
 picam.controls.ExposureTime = 10000
 picam.configure(config)
 picam.start()
