@@ -11,7 +11,7 @@ logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(ascti
 
 picam = Picamera2()
 config = picam.create_video_configuration()
-encoder = MJPEGEncoder()
+encoder = H264Encoder()
 picam.configure(config)
 
 timestamp = datetime.now()
@@ -21,10 +21,13 @@ if not os.path.exists(folder_path):
 file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
-output = FfmpegOutput("-f mpegts udp://192.168.10.168:9876")
+output1 = FfmpegOutput(file_path)
+output2 = FfmpegOutput()
+encoder.output = [output1, output2]
 
 try:
-    picam.start_recording(encoder, output=output, quality=Quality.HIGH)  # Quality parameter moved here
+    picam.start_encoder(encoder, quality=Quality.HIGH)  # Quality parameter moved here
+    picam.start()
     logging.info('Started recording video to: {}'.format(file_path))
     print('Started recording video to: {}'.format(file_path))
     while True:
