@@ -26,11 +26,17 @@ output2 = FfmpegOutput("-f dash -window_size 5 -use_template 1 -use_timeline 1 s
 encoder.output = [output1, output2]
 
 try:
+    print('Starting encoder...')
     picam.start_encoder(encoder, quality=Quality.HIGH)  # Quality parameter moved here
+    print('Encoder started.')
+    print('Starting camera...')
     picam.start()
+    print('Camera started.')
     logging.info('Started recording video to: {}'.format(file_path))
     print('Started recording video to: {}'.format(file_path))
+    print('Starting DASH stream...')
     output2.start()
+    print('Started DASH stream.')
     while True:
         time.sleep(1)  # Wait for 1 second
 except KeyboardInterrupt:
