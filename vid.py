@@ -35,5 +35,6 @@ try:
         time.sleep(1)  # Wait for 1 second
 except KeyboardInterrupt:
     picam.stop()
+    output2.stop()
     logging.info('Stopped recording video.')
     print('Stopped recording video.')
