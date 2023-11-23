@@ -12,9 +12,14 @@ import threading
 # Set up logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
+class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        super().end_headers()
+
 def start_server():
-    PORT = 2233
-    Handler = http.server.SimpleHTTPRequestHandler
+    PORT = 8000
+    Handler = MyHTTPRequestHandler
 
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print("serving at port", PORT)
