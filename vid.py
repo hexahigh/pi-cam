@@ -5,9 +5,20 @@ from picamera2.outputs import FfmpegOutput
 import os
 from datetime import datetime
 import logging
+import http.server
+import socketserver
+import threading
 
 # Set up logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
+
+def start_server():
+    PORT = 2233
+    Handler = http.server.SimpleHTTPRequestHandler
+
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
 
 picam = Picamera2()
 config = picam.create_video_configuration()
@@ -37,10 +48,13 @@ try:
     print('Starting DASH stream...')
     output2.start()
     print('Started DASH stream.')
+    server_thread = threading.Thread(target=start_server)
+    server_thread.start()
     while True:
         time.sleep(1)  # Wait for 1 second
 except KeyboardInterrupt:
     picam.stop()
     output2.stop()
+    server_thread.join()
     logging.info('Stopped recording video.')
     print('Stopped recording video.')
