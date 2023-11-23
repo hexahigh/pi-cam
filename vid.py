@@ -20,10 +20,13 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 def start_server():
     PORT = 2233
     Handler = MyHTTPRequestHandler
+    web_dir = os.path.join(os.path.dirname(__file__), 'stream')  # change 'web' to your directory
+    os.chdir(web_dir)
 
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print("serving at port", PORT)
         httpd.serve_forever()
+
 
 picam = Picamera2()
 config = picam.create_video_configuration()
@@ -38,7 +41,7 @@ file_name = "{}.mp4".format(timestamp.strftime("%H_%M_%S"))
 file_path = os.path.join(folder_path, file_name)
 
 output1 = FfmpegOutput(file_path)
-output2 = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream.m3u8")
+output2 = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream/stream.m3u8")
 encoder.output = [output1, output2]
 
 try:
