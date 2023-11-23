@@ -18,7 +18,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 def start_server():
-    PORT = 8000
+    PORT = 2233
     Handler = MyHTTPRequestHandler
 
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
