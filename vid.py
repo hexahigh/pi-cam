@@ -10,8 +10,8 @@ import logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
-config = picam.create_video_configuration(raw={}, encode="rgb")
-encoder = Encoder()
+config = picam.create_video_configuration()
+encoder = MJPEGEncoder()
 picam.configure(config)
 
 timestamp = datetime.now()
