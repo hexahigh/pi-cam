@@ -1,0 +1,1 @@
+v4l2-ctl --set-ctrl wide_dynamic_range=0 -d /dev/v4l-subdev0

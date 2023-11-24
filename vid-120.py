@@ -11,6 +11,7 @@ logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(ascti
 
 picam = Picamera2()
 config = picam.create_video_configuration()
+picam.set_controls({"FrameDurationLimits": {1000000 / 120, 1000000 / 30}}) 
 encoder = MJPEGEncoder()
 picam.configure(config)
 
