@@ -25,6 +25,7 @@ GPIO.setup(led_pin, GPIO.OUT)
 try:
     GPIO.output(led_pin, GPIO.HIGH)
     while True:
+        print(GPIO.input(button_pin))
         if GPIO.input(button_pin) == GPIO.HIGH:
             timestamp = datetime.now()
             folder_path = os.path.join(str(timestamp.month), str(timestamp.day))
