@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(filename='picamera.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 picam = Picamera2()
-config = picam.create_video_configuration()
+config = picam.create_video_configuration(main={"size": (2304, 1296)})
 encoder = JpegEncoder()
 picam.configure(config)
 
