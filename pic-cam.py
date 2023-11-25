@@ -26,6 +26,9 @@ GPIO.output(led_pin, GPIO.LOW)
 try:
     while True:
         if GPIO.input(button_pin) == 1:
+            # Turn on the LED
+            GPIO.output(led_pin, GPIO.HIGH)
+            
             timestamp = datetime.now()
             folder_path = os.path.join(str(timestamp.month), str(timestamp.day))
             if not os.path.exists(folder_path):
@@ -36,10 +39,15 @@ try:
             logging.info('Captured image and saved to: {}'.format(file_path))
             print('Captured image and saved to: {}'.format(file_path))
             
-            # Blink the LED
-            GPIO.output(led_pin, GPIO.HIGH)
-            time.sleep(1)
+            # Turn off the LED
             GPIO.output(led_pin, GPIO.LOW)
+            
+            # Blink the LED rapidly
+            for i in range(5):
+                GPIO.output(led_pin, GPIO.HIGH)
+                time.sleep(0.2)
+                GPIO.output(led_pin, GPIO.LOW)
+                time.sleep(0.2)
             
         time.sleep(0.1)  # Debounce
 except KeyboardInterrupt:
