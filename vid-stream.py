@@ -33,7 +33,7 @@ config = picam.create_video_configuration()
 encoder = JpegEncoder()
 picam.configure(config)
 
-output = FfmpegOutput(" -vcodec libx264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream/stream.m3u8")
+output = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream/stream.m3u8")
 encoder.output = output
 
 try:
