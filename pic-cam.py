@@ -16,7 +16,7 @@ picam.controls.ExposureTime = 1000
 picam.configure(config)
 picam.start()
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 button_pin = 24
 led_pin = 23
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
