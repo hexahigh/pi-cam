@@ -30,7 +30,7 @@ def start_server():
 
 picam = Picamera2()
 config = picam.create_video_configuration()
-encoder = JpegEncoder()
+encoder = H264Encoder()
 picam.configure(config)
 
 output = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream/stream.m3u8")
@@ -38,7 +38,7 @@ encoder.output = output
 
 try:
     print('Starting encoder...')
-    picam.start_encoder(encoder, quality=Quality.HIGH)  # Quality parameter moved here
+    picam.start_encoder(encoder, quality=Quality.VERY_LOW)  # Quality parameter moved here
     print('Encoder started.')
     print('Starting DASH stream...')
     picam.start()
