@@ -23,6 +23,7 @@ GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(led_pin, GPIO.OUT)
 
 try:
+    GPIO.output(led_pin, GPIO.HIGH)
     while True:
         if GPIO.input(button_pin) == GPIO.HIGH:
             timestamp = datetime.now()
