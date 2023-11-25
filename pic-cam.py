@@ -17,8 +17,8 @@ picam.configure(config)
 picam.start()
 
 GPIO.setmode(GPIO.BOARD)
-button_pin = 23
-led_pin = 24
+button_pin = 24
+led_pin = 23
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(led_pin, GPIO.OUT)
 
