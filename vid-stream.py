@@ -29,8 +29,8 @@ def start_server():
 
 
 picam = Picamera2()
-config = picam.create_video_configuration(encode="XBGR8888")
-encoder = Encoder()
+config = picam.create_video_configuration()
+encoder = H264Encoder()
 picam.configure(config)
 
 output = FfmpegOutput("-f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -hls_allow_cache 0 stream/stream.m3u8")

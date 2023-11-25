@@ -29,7 +29,7 @@ def start_server():
 
 
 picam = Picamera2()
-config = picam.create_video_configuration()
+config = picam.create_video_configuration(encode="XBGR8888")
 encoder = Encoder()
 picam.configure(config)
 
